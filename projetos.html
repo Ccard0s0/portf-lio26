@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Projetos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* CARROSSEL */
+      .carousel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        width: 100%;
+        aspect-ratio: 16/9; /* mantém proporção das imagens, ajusta conforme quiseres */
+      }
+
+      .carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* agora a imagem cabe no container sem cortar */
+        display: none;
+        border-radius: 20px;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .carousel img.active {
+        display: block;
+      }
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        padding: 6px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .carousel-btn.prev {
+        left: 10px;
+      }
+
+      .carousel-btn.next {
+        right: 10px;
+      }
+      /* CARD DO PDF */
+      .project-links {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .project-links .btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BOTÃO VOLTAR -->
+    <button
+      class="btn"
+      onclick="history.back()"
+      style="position: fixed; bottom: 20px; right: 20px; z-index: 1000"
+    >
+      Voltar
+    </button>
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+      <h2>Projetos</h2>
+      <div class="projects">
+        <!-- CARD 1: PlotClock -->
+        <div class="card">
+          <div class="carousel">
+            <img src="pics/plotclock1.jpg" alt="PlotClock 1" class="active" />
+            <img src="pics/plotclock2.jpg" alt="PlotClock 2" />
+            <img src="pics/plotclock3.jpg" alt="PlotClock 3" />
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+          </div>
+          <h3>PlotClock</h3>
+          <p>Relógio desenhador com Arduino, RTC e servos.</p>
+        </div>
+
+        <!-- CARD 2: Gerador de Currículos -->
+        <div class="card">
+          <div class="carousel">
+            <img
+              src="pics/curriculos1.webp"
+              alt="Currículos 1"
+              class="active"
+            />
+            <img src="pics/curriculos2.webp" alt="Currículos 2" />
+          </div>
+          <h3>Gerador de Currículos</h3>
+          <p>Aplicação web que gera currículos em PDF.</p>
+
+          <!-- Botões GitHub e PDF -->
+          <div class="project-links">
+            <a
+              href="https://github.com/Ccard0s0/trabalho-est-gio.git"
+              target="_blank"
+              class="btn"
+              >GitHub</a
+            >
+          </div>
+        </div>
+
+        <!-- CARD 3: Casa Inteligente -->
+        <div class="card">
+          <div class="carousel">
+            <img src="pics/casa1.jpg" alt="Casa 1" class="active" />
+            <img src="pics/casa2.jpg" alt="Casa 2" />
+            <img src="pics/casa3.jpg" alt="Casa 3" />
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+          </div>
+          <h3>Casa Inteligente</h3>
+          <p>Sistema de automação residencial com Arduino.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <h2>Competências</h2>
+      <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Python</div>
+        <div class="skill">Flask</div>
+        <div class="skill">Arduino</div>
+        <div class="skill">Git</div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <footer>
+      <p>Email: cardoso200614@gmail.com</p>
+      <p>GitHub · LinkedIn</p>
+    </footer>
+
+    <script>
+      // CARROSSEL SIMPLES
+      document.querySelectorAll(".carousel").forEach((carousel) => {
+        const images = carousel.querySelectorAll("img");
+        let index = 0;
+        const prevBtn = carousel.querySelector(".prev");
+        const nextBtn = carousel.querySelector(".next");
+
+        function showImage(i) {
+          images.forEach((img) => img.classList.remove("active"));
+          images[i].classList.add("active");
+        }
+
+        prevBtn.addEventListener("click", () => {
+          index = (index - 1 + images.length) % images.length;
+          showImage(index);
+        });
+
+        nextBtn.addEventListener("click", () => {
+          index = (index + 1) % images.length;
+          showImage(index);
+        });
+      });
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
