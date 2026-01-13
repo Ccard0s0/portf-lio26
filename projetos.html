@@ -1,284 +1,183 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio | Sobre</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* =========================
-       VARIÁVEIS DE TEMA
-    ========================= */
-    :root {
-      --sb-bg: #f9f9f9;
-      --sb-text: #222;
-      --sb-subtext: #555;
-      --sb-card-bg: #fff;
-      --sb-footer-bg: #eee;
-      --sb-footer-text: #666;
-      --sb-btn-bg: #444;
-      --sb-btn-hover: #666;
-      --sb-link-hover: #555;
-      --sb-ribbon-bg: #f5e8d4; /* cor da fita */
-    }
-
-    body.sb-dark {
-      --sb-bg: #111;
-      --sb-text: #eee;
-      --sb-subtext: #bbb;
-      --sb-card-bg: #1a1a1a;
-      --sb-footer-bg: #1a1a1a;
-      --sb-footer-text: #aaa;
-      --sb-btn-bg: #333;
-      --sb-btn-hover: #555;
-      --sb-link-hover: #777;
-      --sb-ribbon-bg: #2a2a2a; /* fita escura no dark mode */
-    }
-
-    /* =========================
-       RESET BÁSICO
-    ========================= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Inter", sans-serif;
-    }
-
-    body {
-      background: var(--sb-bg);
-      color: var(--sb-text);
-      line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    /* =========================
-       BOTÕES FIXOS
-    ========================= */
-    .sb-btn,
-    .sb-theme-btn {
-      cursor: pointer;
-      border-radius: 12px;
-      border: none;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 10px 20px;
-      transition: all 0.3s;
-    }
-
-    .sb-btn {
-      background: var(--sb-btn-bg);
-      color: #fff;
-      display: inline-block;
-      margin: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .sb-btn:hover {
-      background: var(--sb-btn-hover);
-      transform: translateY(-2px);
-    }
-
-    .sb-theme-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--sb-btn-bg);
-      color: #fff;
-      padding: 10px 12px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      z-index: 1000;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    /* =========================
-       SOBRE MIM - FITA + CARTÃO
-    ========================= */
-    .sb-about-wrapper {
-      position: relative;
-      margin-top: 100px;
-      margin-bottom: 100px;
-    }
-
-    .sb-about-ribbon {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 360px; /* altura aproximada */
-      background: var(--sb-ribbon-bg);
-      border-radius: 30px;
-      transform: translateY(-50%);
-      z-index: 0;
-    }
-
-    .sb-about-container {
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sb-about-image {
-      flex: 1 1 280px;
-      max-width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s;
-    }
-
-    .sb-about-image:hover {
-      transform: scale(1.05);
-    }
-
-    .sb-about-content {
-      flex: 2 1 500px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: 30px;
-      background: var(--sb-card-bg);
-      border-radius: 25px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .sb-about-content h1 {
-      font-size: 2.8rem;
-      color: var(--sb-text);
-    }
-
-    .sb-about-content h2 {
-      font-size: 1.6rem;
-      color: var(--sb-subtext);
-    }
-
-    .sb-about-content p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--sb-text);
-    }
-
-    .sb-about-links {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-
-    .sb-about-links a {
-      background: var(--sb-btn-bg);
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .sb-about-links a:hover {
-      background: var(--sb-btn-hover);
-      transform: translateY(-2px);
-    }
-
-    /* =========================
-       FOOTER CLEAN
-    ========================= */
-    .sb-footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--sb-footer-text);
-      background: var(--sb-footer-bg);
-      margin-top: 80px;
-      border-top: 1px solid rgba(0,0,0,0.1);
-      transition: background 0.3s, color 0.3s;
-    }
-
-    /* =========================
-       RESPONSIVO
-    ========================= */
-    @media (max-width: 768px) {
-      .sb-about-container {
-        flex-direction: column;
-        text-align: center;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Projetos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="stylemain.css" />
+    <style>
+      /* CARROSSEL */
+      .carousel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        width: 100%;
+        aspect-ratio: 16/9; /* mantém proporção das imagens, ajusta conforme quiseres */
       }
 
-      .sb-about-image {
-        max-width: 70%;
-        height: auto;
+      .carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* agora a imagem cabe no container sem cortar */
+        display: none;
+        border-radius: 20px;
+        transition: opacity 0.3s ease-in-out;
       }
 
-      .sb-about-content h1 {
-        font-size: 2rem;
+      .carousel img.active {
+        display: block;
       }
 
-      .sb-about-content h2 {
-        font-size: 1.3rem;
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        padding: 6px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1rem;
       }
-    }
-  </style>
-</head>
-<body>
-  <!-- BOTÃO VOLTAR -->
-  <button class="sb-btn" onclick="history.back()">Voltar</button>
-  <button id="sb-theme-toggle" class="sb-theme-btn">🌙</button>
 
-  <!-- SOBRE MIM COM FITA -->
-  <section class="sb-about-wrapper">
-    <div class="sb-about-ribbon"></div>
-    <div class="sb-about-container">
-      <img src="pics/eu1.jpg" alt="Foto Carolina" class="sb-about-image" />
-      <div class="sb-about-content">
-        <h1>Olá, sou Carolina</h1>
-        <h2>Desenvolvedora Web & Criadora de Projetos Arduino</h2>
-        <p>
-          Comecei na programação há 3 anos sem saber muito bem o que estava a
-          fazer. Desde então, fui aprendendo aos poucos, metendo as mãos em
-          projetos com Arduino, jogos e sites, e descobri que adoro criar coisas
-          do zero. Cada projeto foi um passo para perceber melhor como as coisas
-          funcionam e como posso fazer algo útil e divertido ao mesmo tempo.
-          Hoje continuo a explorar, experimentar e a aprender cada vez mais,
-          sempre com curiosidade e vontade de melhorar.
-        </p>
-        <p>
-          Adoro criar interfaces limpas, funcionais e experiências que unem
-          design e código.
-        </p>
+      .carousel-btn.prev {
+        left: 10px;
+      }
 
-        <div class="sb-about-links">
-          <a href="https://github.com/Ccard0s0" target="_blank">GitHub</a>
-          <a href="contacto.html">Contacto</a>
+      .carousel-btn.next {
+        right: 10px;
+      }
+      /* CARD DO PDF */
+      .project-links {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .project-links .btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BOTÃO VOLTAR -->
+    <button
+      class="btn"
+      onclick="history.back()"
+      style="position: fixed; bottom: 20px; right: 20px; z-index: 1000"
+    >
+      Voltar
+    </button>
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+      <h2>Projetos</h2>
+      <div class="projects">
+        <!-- CARD 1: PlotClock -->
+        <div class="card">
+          <div class="carousel">
+            <img src="pics/plotclock1.jpg" alt="PlotClock 1" class="active" />
+            <img src="pics/plotclock2.jpg" alt="PlotClock 2" />
+            <img src="pics/plotclock3.jpg" alt="PlotClock 3" />
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+          </div>
+          <h3>PlotClock</h3>
+          <p>Relógio desenhador com Arduino, RTC e servos.</p>
+        </div>
+
+        <!-- CARD 2: Gerador de Currículos -->
+        <div class="card">
+          <div class="carousel">
+            <img
+              src="pics/curriculos1.webp"
+              alt="Currículos 1"
+              class="active"
+            />
+            <img src="pics/curriculos2.webp" alt="Currículos 2" />
+          </div>
+          <h3>Gerador de Currículos</h3>
+          <p>Aplicação web que gera currículos em PDF.</p>
+
+          <!-- Botões GitHub e PDF -->
+          <div class="project-links">
+            <a
+              href="https://github.com/Ccard0s0/trabalho-est-gio.git"
+              target="_blank"
+              class="btn"
+              >GitHub</a
+            >
+          </div>
+        </div>
+
+        <!-- CARD 3: Casa Inteligente -->
+        <div class="card">
+          <div class="carousel">
+            <img src="pics/casa1.jpg" alt="Casa 1" class="active" />
+            <img src="pics/casa2.jpg" alt="Casa 2" />
+            <img src="pics/casa3.jpg" alt="Casa 3" />
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+          </div>
+          <h3>Casa Inteligente</h3>
+          <p>Sistema de automação residencial com Arduino.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="sb-footer">
-    <p>Email: cardoso200614@gmail.com</p>
-    <p>GitHub · Instagram</p>
-  </footer>
+    <!-- SKILLS -->
+    <section>
+      <h2>Competências</h2>
+      <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Python</div>
+        <div class="skill">Flask</div>
+        <div class="skill">Arduino</div>
+        <div class="skill">Git</div>
+      </div>
+    </section>
 
-  <script>
-    // LIGHT / DARK TOGGLE
-    const sbThemeToggle = document.getElementById("sb-theme-toggle");
-    sbThemeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("sb-dark");
-      if(document.body.classList.contains("sb-dark")) {
-        sbThemeToggle.textContent = "☀️";
-      } else {
-        sbThemeToggle.textContent = "🌙";
-      }
-    });
-  </script>
-</body>
+    <!-- CONTACTO -->
+    <footer>
+      <p>Email: cardoso200614@gmail.com</p>
+      <p>GitHub · LinkedIn</p>
+    </footer>
+
+    <script>
+      // CARROSSEL SIMPLES
+      document.querySelectorAll(".carousel").forEach((carousel) => {
+        const images = carousel.querySelectorAll("img");
+        let index = 0;
+        const prevBtn = carousel.querySelector(".prev");
+        const nextBtn = carousel.querySelector(".next");
+
+        function showImage(i) {
+          images.forEach((img) => img.classList.remove("active"));
+          images[i].classList.add("active");
+        }
+
+        prevBtn.addEventListener("click", () => {
+          index = (index - 1 + images.length) % images.length;
+          showImage(index);
+        });
+
+        nextBtn.addEventListener("click", () => {
+          index = (index + 1) % images.length;
+          showImage(index);
+        });
+      });
+    </script>
+
+    <script src="script.js"></script>
+  </body>
 </html>
