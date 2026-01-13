@@ -1,33 +1,282 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio | Sobre</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Sobre</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* =========================
+       VARIÁVEIS DE TEMA
+    ========================= */
+      :root {
+        --sb-bg: #f9f9f9;
+        --sb-text: #222;
+        --sb-subtext: #555;
+        --sb-card-bg: #f5f3f0; /* menos branco */
+        --sb-footer-bg: #eee;
+        --sb-footer-text: #666;
+        --sb-btn-bg: #5a4f41; /* botões mais quentes */
+        --sb-btn-hover: #7c6e5d; /* hover botões */
+        --sb-link-hover: #7c6e5d;
+        --sb-ribbon-bg: #f5e8d4;
+      }
 
-  <!-- BOTÃO VOLTAR -->
-  <button class="btn" onclick="history.back()" style="position:fixed; bottom:20px; right:20px;">Voltar</button>
-  <button id="theme-toggle" class="theme-toggle">🌙</button>
+      body.sb-dark {
+        --sb-bg: #111;
+        --sb-text: #eee;
+        --sb-subtext: #bbb;
+        --sb-card-bg: #1a1a1a;
+        --sb-footer-bg: #1a1a1a;
+        --sb-footer-text: #aaa;
+        --sb-btn-bg: #333;
+        --sb-btn-hover: #555;
+        --sb-link-hover: #777;
+        --sb-ribbon-bg: #2a2a2a;
+      }
+      /* =========================
+       RESET BÁSICO
+    ========================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
 
-  <!-- SOBRE -->
-  <section>
-    <h2>Sobre mim</h2>
-    <p>
-      Iniciei o meu percurso na programação no começo do curso e tenho vindo a evoluir
-      através de projetos práticos, focados em web e sistemas físicos com Arduino.
-    </p>
-  </section>
+      body {
+        background: var(--sb-bg);
+        color: var(--sb-text);
+        line-height: 1.6;
+        transition: background 0.3s, color 0.3s;
+      }
 
-  <!-- CONTACTO -->
-  <footer>    
-    <p>Email: cardoso200614@gmail.com</p>
-    <p>GitHub · LinkedIn</p>
-  </footer>
+      /* =========================
+       BOTÕES FIXOS
+    ========================= */
+      /* REMOVE FUNDO DO TOGGLE (emoji puro) */
+      .sb-theme-btn {
+        background: transparent !important;
+        box-shadow: none;
+        padding: 8px;
+        color: var(--sb-text);
+      }
 
-  <script src="script.js"></script>
-</body>
+      .sb-btn {
+        background: var(--sb-btn-bg);
+        color: #fff;
+        display: inline-block;
+        margin: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .sb-btn:hover {
+        background: none;
+        transform: transparent;
+      }
+
+      .sb-theme-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--sb-btn-bg);
+        color: #fff;
+        padding: 10px 12px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        z-index: 1000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* =========================
+       SOBRE MIM - FITA + CARTÃO
+    ========================= */
+      .sb-about-wrapper {
+        position: relative;
+        margin-top: 100px;
+        margin-bottom: 100px;
+      }
+
+      .sb-about-ribbon {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 360px; /* altura aproximada */
+        background: var(--sb-ribbon-bg);
+        border-radius: 30px;
+        transform: translateY(-50%);
+        z-index: 0;
+      }
+
+      .sb-about-container {
+        position: relative;
+        z-index: 1;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sb-about-image {
+        flex: 1 1 280px;
+        max-width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s;
+      }
+
+      .sb-about-image:hover {
+        transform: scale(1.05);
+      }
+
+      .sb-about-content {
+        flex: 2 1 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px;
+        background: var(--sb-card-bg);
+        border-radius: 25px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .sb-about-content h1 {
+        font-size: 2.8rem;
+        color: var(--sb-text);
+      }
+
+      .sb-about-content h2 {
+        font-size: 1.6rem;
+        color: var(--sb-subtext);
+      }
+
+      .sb-about-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--sb-text);
+      }
+
+      .sb-about-links {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 15px;
+      }
+
+      .sb-about-links a {
+        background: var(--sb-btn-bg);
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .sb-about-links a:hover {
+        background: var(--sb-btn-hover);
+        transform: translateY(-2px);
+      }
+
+      /* =========================
+       FOOTER CLEAN
+    ========================= */
+      .sb-footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--sb-footer-text);
+        background: var(--sb-footer-bg);
+        margin-top: 80px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        transition: background 0.3s, color 0.3s;
+      }
+
+      /* =========================
+       RESPONSIVO
+    ========================= */
+      @media (max-width: 768px) {
+        .sb-about-container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .sb-about-image {
+          max-width: 70%;
+          height: auto;
+        }
+
+        .sb-about-content h1 {
+          font-size: 2rem;
+        }
+
+        .sb-about-content h2 {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BOTÃO VOLTAR -->
+    <button class="sb-btn" onclick="history.back()">Voltar</button>
+    <button id="sb-theme-toggle" class="sb-theme-btn">🌙</button>
+
+    <!-- SOBRE MIM COM FITA -->
+    <section class="sb-about-wrapper">
+      <div class="sb-about-ribbon"></div>
+      <div class="sb-about-container">
+        <img src="pics/eu1.jpg" alt="Foto Carolina" class="sb-about-image" />
+        <div class="sb-about-content">
+          <h1>Carolina, 19</h1>
+          <h2>Desenvolvedora Web & Criadora de Projetos Arduino</h2>
+          <p>
+            Comecei na programação há 3 anos sem saber muito bem o que estava a
+            fazer. Desde então, fui aprendendo aos poucos, metendo as mãos em
+            projetos com Arduino, jogos e sites, e descobri que adoro criar
+            coisas do zero. Cada projeto foi um passo para perceber melhor como
+            as coisas funcionam e como posso fazer algo útil e divertido ao
+            mesmo tempo. Hoje continuo a explorar, experimentar e a aprender
+            cada vez mais, sempre com curiosidade e vontade de melhorar.
+          </p>
+          <p>
+            Adoro criar interfaces limpas, funcionais e experiências que unem
+            design e código.
+          </p>
+
+          <div class="sb-about-links">
+            <a href="https://github.com/Ccard0s0" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="sb-footer">
+      <p>Email: cardoso200614@gmail.com</p>
+      <p>GitHub · Instagram</p>
+    </footer>
+
+    <script>
+      // LIGHT / DARK TOGGLE
+      const sbThemeToggle = document.getElementById("sb-theme-toggle");
+      sbThemeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("sb-dark");
+        if (document.body.classList.contains("sb-dark")) {
+          sbThemeToggle.textContent = "☀️";
+        } else {
+          sbThemeToggle.textContent = "🌙";
+        }
+      });
+    </script>
+  </body>
 </html>
