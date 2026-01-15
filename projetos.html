@@ -8,176 +8,184 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="stylemain.css" />
-    <style>
-      /* CARROSSEL */
-      .carousel {
-        position: relative;
-        overflow: hidden;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        width: 100%;
-        aspect-ratio: 16/9; /* mantém proporção das imagens, ajusta conforme quiseres */
-      }
-
-      .carousel img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain; /* agora a imagem cabe no container sem cortar */
-        display: none;
-        border-radius: 20px;
-        transition: opacity 0.3s ease-in-out;
-      }
-
-      .carousel img.active {
-        display: block;
-      }
-
-      .carousel-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.5);
-        color: #fff;
-        border: none;
-        padding: 6px 10px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 1rem;
-      }
-
-      .carousel-btn.prev {
-        left: 10px;
-      }
-
-      .carousel-btn.next {
-        right: 10px;
-      }
-      /* CARD DO PDF */
-      .project-links {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .project-links .btn {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+ <link rel="stylesheet" href="styleprojetos.css">
   </head>
+
   <body>
-    <!-- BOTÃO VOLTAR -->
-    <button
-      class="btn"
-      onclick="history.back()"
-      style="position: fixed; bottom: 20px; right: 20px; z-index: 1000"
-    >
-      Voltar
-    </button>
-    <button id="theme-toggle" class="theme-toggle">🌙</button>
+    <button class="btn-back" onclick="history.back()">Voltar</button>
+    <button id="theme-toggle">🌙</button>
 
-    <!-- PROJETOS -->
-    <section id="projetos">
-      <h2>Projetos</h2>
-      <div class="projects">
-        <!-- CARD 1: PlotClock -->
-        <div class="card">
-          <div class="carousel">
-            <img src="pics/plotclock1.jpg" alt="PlotClock 1" class="active" />
-            <img src="pics/plotclock2.jpg" alt="PlotClock 2" />
-            <img src="pics/plotclock3.jpg" alt="PlotClock 3" />
-            <button class="carousel-btn prev">&#10094;</button>
-            <button class="carousel-btn next">&#10095;</button>
+    <main>
+      <!-- PROJETOS -->
+      <section id="projetos">
+        <h2>Projetos de Estágio</h2>
+        <div class="projects">
+          <!-- CARD 1 -->
+          <div class="card">
+            <div class="carousel">
+              <img src="pics/plotclock1.jpg" class="active" />
+              <img src="pics/plotclock2.jpg" />
+              <img src="pics/plotclock3.jpg" />
+              <button class="carousel-btn prev">&#10094;</button>
+              <button class="carousel-btn next">&#10095;</button>
+            </div>
+            <div class="card-body">
+              <h3>PlotClock</h3>
+              <p class="project-desc">
+                Relógio desenhador com Arduino, RTC e servos. Permite visualizar
+                as horas desenhadas por servos de precisão.
+              </p>
+              <div class="project-tech">
+                <span>Arduino</span><span>RTC</span><span>Servos</span
+                ><span>C++</span>
+              </div>
+              <div class="project-features">
+                <span>⏰ Hora exata</span><span>🖌️ Desenho automático</span
+                ><span>⚡ Projeto físico</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://www.instructables.com/PlotClock-With-Arduino/"
+                  class="btn"
+                  >Ver detalhes</a
+                >
+              </div>
+            </div>
           </div>
-          <h3>PlotClock</h3>
-          <p>Relógio desenhador com Arduino, RTC e servos.</p>
+
+          <!-- CARD 2 -->
+          <div class="card">
+            <div class="carousel">
+              <img src="pics/curriculos1.webp" class="active" />
+              <img src="pics/curriculos2.webp" />
+              <button class="carousel-btn prev">&#10094;</button>
+              <button class="carousel-btn next">&#10095;</button>
+            </div>
+            <div class="card-body">
+              <h3>Gerador de Currículos</h3>
+              <p class="project-desc">
+                Aplicação web que gera currículos em PDF a partir de um
+                formulário, incluindo envio por email e upload de foto.
+              </p>
+              <div class="project-tech">
+                <span>HTML</span><span>CSS</span><span>JS</span
+                ><span>Flask</span><span>PDF</span>
+              </div>
+              <div class="project-features">
+                <span>📄 PDF automático</span><span>✉️ Envio por email</span
+                ><span>🖼️ Upload de foto</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/Ccard0s0/trabalho-est-gio.git"
+                  target="_blank"
+                  class="btn"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="card">
+            <div class="carousel">
+              <img src="pics/casa1.jpg" class="active" />
+              <img src="pics/casa2.jpg" />
+              <img src="pics/casa3.jpg" />
+              <button class="carousel-btn prev">&#10094;</button>
+              <button class="carousel-btn next">&#10095;</button>
+            </div>
+            <div class="card-body">
+              <h3>Casa Inteligente</h3>
+              <p class="project-desc">
+                Sistema de automação residencial com Arduino, sensores e
+                controlos remotos para iluminação, segurança e conforto.
+              </p>
+              <div class="project-tech">
+                <span>Arduino</span><span>DHT11</span><span>Relés</span
+                ><span>Python</span>
+              </div>
+              <div class="project-features">
+                <span>💡 Controlo de luzes</span><span>🔒 Segurança</span
+                ><span>📡 Sensores</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://mauser.pt/095-5110/keyestudio-ks0085-kit-diy-de-casa-inteligente-stem"
+                  class="btn"
+                  >Ver detalhes</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <!-- CARD 2: Gerador de Currículos -->
-        <div class="card">
-          <div class="carousel">
-            <img
-              src="pics/curriculos1.webp"
-              alt="Currículos 1"
-              class="active"
-            />
-            <img src="pics/curriculos2.webp" alt="Currículos 2" />
+      <!-- SKILLS -->
+      <section>
+        <h2>Competências</h2>
+        <div class="skills">
+          <div class="skill">
+            <i class="fa-brands fa-html5"></i><span>HTML</span>
           </div>
-          <h3>Gerador de Currículos</h3>
-          <p>Aplicação web que gera currículos em PDF.</p>
-
-          <!-- Botões GitHub e PDF -->
-          <div class="project-links">
-            <a
-              href="https://github.com/Ccard0s0/trabalho-est-gio.git"
-              target="_blank"
-              class="btn"
-              >GitHub</a
-            >
+          <div class="skill">
+            <i class="fa-brands fa-css3-alt"></i><span>CSS</span>
+          </div>
+          <div class="skill">
+            <i class="fa-brands fa-js"></i><span>JS</span>
+          </div>
+          <div class="skill">
+            <i class="fa-brands fa-python"></i><span>Python</span>
+          </div>
+          <div class="skill">
+            <i class="fa-solid fa-flask"></i><span>Flask</span>
+          </div>
+          <div class="skill">
+            <i class="fa-solid fa-microchip"></i><span>Arduino</span>
+          </div>
+          <div class="skill">
+            <i class="fa-brands fa-git-alt"></i><span>Git</span>
           </div>
         </div>
+      </section>
+    </main>
 
-        <!-- CARD 3: Casa Inteligente -->
-        <div class="card">
-          <div class="carousel">
-            <img src="pics/casa1.jpg" alt="Casa 1" class="active" />
-            <img src="pics/casa2.jpg" alt="Casa 2" />
-            <img src="pics/casa3.jpg" alt="Casa 3" />
-            <button class="carousel-btn prev">&#10094;</button>
-            <button class="carousel-btn next">&#10095;</button>
-          </div>
-          <h3>Casa Inteligente</h3>
-          <p>Sistema de automação residencial com Arduino.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section>
-      <h2>Competências</h2>
-      <div class="skills">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">Python</div>
-        <div class="skill">Flask</div>
-        <div class="skill">Arduino</div>
-        <div class="skill">Git</div>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
+    <!-- Footer -->
     <footer>
       <p>Email: cardoso200614@gmail.com</p>
       <p>GitHub · LinkedIn</p>
     </footer>
 
     <script>
-      // CARROSSEL SIMPLES
+      // Dark/Light mode
+      const toggle = document.getElementById("theme-toggle");
+      toggle.addEventListener("click", () =>
+        document.body.classList.toggle("dark")
+      );
+
+      // Carousel
       document.querySelectorAll(".carousel").forEach((carousel) => {
-        const images = carousel.querySelectorAll("img");
-        let index = 0;
-        const prevBtn = carousel.querySelector(".prev");
-        const nextBtn = carousel.querySelector(".next");
-
-        function showImage(i) {
-          images.forEach((img) => img.classList.remove("active"));
-          images[i].classList.add("active");
+        const imgs = carousel.querySelectorAll("img");
+        let idx = 0;
+        const prev = carousel.querySelector(".prev");
+        const next = carousel.querySelector(".next");
+        function show(i) {
+          imgs.forEach((img) => img.classList.remove("active"));
+          imgs[i].classList.add("active");
         }
-
-        prevBtn.addEventListener("click", () => {
-          index = (index - 1 + images.length) % images.length;
-          showImage(index);
+        prev.addEventListener("click", () => {
+          idx = (idx - 1 + imgs.length) % imgs.length;
+          show(idx);
         });
-
-        nextBtn.addEventListener("click", () => {
-          index = (index + 1) % images.length;
-          showImage(index);
+        next.addEventListener("click", () => {
+          idx = (idx + 1) % imgs.length;
+          show(idx);
         });
       });
     </script>
-
-    <script src="script.js"></script>
   </body>
 </html>
